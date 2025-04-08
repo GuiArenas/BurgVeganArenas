@@ -14,6 +14,7 @@ let cart = [];
 //Evento para adicionar o estilo que está escondido em CSS com a propriedade "Hidden"
 cartBtn.addEventListener("click", function() {
     cartModal.style.display = "flex"
+    updateCartModal();
 })
 
 // Fechar o modal quando clicar fora
@@ -54,12 +55,46 @@ function addToCart(name, price){
             quantity: 1,
         })
     }
-   
+
+    updateCartModal();
 
 }
 
 //Att. o carrinho
 
 function updateCartModal() {
+    cartItemsContainer.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+        const cartItemElement = document.createElement("div");
+        cartItemElement.classList.add("flex", "justify-between", "mb-4", "flex-col")
+
+        cartItemElement.innerHTML = `
+        <div class="flex items-center justify-between">
+            <div> 
+                <p class="font-medium">${item.name}</p>
+                <p>Qtd: ${item.quantity}</p>
+                <p class="font-medium mt-2">R$ ${item.price.toFixed(2)}</p>
+            </div>
+
+                <button> 
+                    Remover
+                </button>
+
+        </div>
+        `
+
+        total += item.price * item.quantity;
+
+
+        cartItemsContainer.appendChild(cartItemElement)
+    })
+
+    cartTotal.textContent = total.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+
 
 }
