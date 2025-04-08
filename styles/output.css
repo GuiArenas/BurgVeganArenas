@@ -2160,7 +2160,7 @@ video {
 }
 
 .bg-home {
-  background-image: url('/assets/bg.png');
+  background-image: url('assets/bg.png');
 }
 
 .bg-none {
@@ -3154,10 +3154,6 @@ body{
 }
 
 @media (min-width: 640px) {
-  .sm\:bg-home {
-    background-image: url('/assets/bg.png');
-  }
-
   .sm\:underline {
     text-decoration-line: underline;
   }
